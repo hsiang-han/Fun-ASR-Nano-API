@@ -1,0 +1,32 @@
+<?xml version="1.0"?>
+<Container version="2">
+  <Name>Fun-ASR-Nano-API</Name>
+  <Repository>ghcr.io/hsiang-han/fun-asr-nano-api:latest</Repository>
+  <Registry>https://ghcr.io</Registry>
+  <Network>bridge</Network>
+  <MyIP/>
+  <Shell>bash</Shell>
+  <Privileged>false</Privileged>
+  <Support>https://github.com/hsiang-han/Fun-ASR-Nano-API/issues</Support>
+  <Project>https://github.com/hsiang-han/Fun-ASR-Nano-API</Project>
+  <Overview>OpenAI-compatible Speech-to-Text API powered by Fun-ASR-Nano (800M, FunAudioLLM). 31 languages, Chinese dialects, hotwords, streaming-capable. Switch between Fun-ASR-Nano (full features) and Fun-ASR-MLT (31 languages including European) via MODEL_ID. First start downloads model from HuggingFace. China users: set HF_ENDPOINT to https://hf-mirror.com. Requires NVIDIA GPU with driver 550+.</Overview>
+  <Category>AI: Productivity: Tools:</Category>
+  <WebUI>http://[IP]:[PORT:8080]/docs</WebUI>
+  <TemplateURL>https://raw.githubusercontent.com/hsiang-han/unraid_templates/main/templates/fun-asr-nano-api.xml</TemplateURL>
+  <Icon>https://raw.githubusercontent.com/hsiang-han/unraid_templates/main/assets/fun-asr-nano-api-icon.png</Icon>
+  <ExtraParams>--gpus all --shm-size=4g</ExtraParams>
+
+  <Config Name="API Port" Target="8080" Default="8080" Mode="tcp" Description="OpenAI-compatible STT API port. Swagger docs at /docs" Type="Port" Display="always" Required="true" Mask="false">8080</Config>
+
+  <Config Name="Model Cache" Target="/root/.cache/huggingface" Default="/mnt/user/appdata/fun-asr-nano-api/models" Mode="rw" Description="Model download cache. Persists across container recreates." Type="Path" Display="always" Required="true" Mask="false">/mnt/user/appdata/fun-asr-nano-api/models</Config>
+
+  <Config Name="Model ID" Target="MODEL_ID" Default="FunAudioLLM/Fun-ASR-Nano-2512-hf" Mode="" Description="Fun-ASR-Nano-2512-hf (full features, dialects, hotwords) or FunAudioLLM/Fun-ASR-MLT-Nano-2512 (31 languages including European)." Type="Variable" Display="always" Required="true" Mask="false">FunAudioLLM/Fun-ASR-Nano-2512-hf</Config>
+
+  <Config Name="Language" Target="LANGUAGE" Default="auto" Mode="" Description="Default language: auto, 中文, English, 日文, etc. Per-request override via API parameter." Type="Variable" Display="always" Required="false" Mask="false">auto</Config>
+
+  <Config Name="HuggingFace Endpoint" Target="HF_ENDPOINT" Default="https://huggingface.co" Mode="" Description="HuggingFace download endpoint. China users: change to https://hf-mirror.com for faster downloads." Type="Variable" Display="always" Required="false" Mask="false">https://huggingface.co</Config>
+
+  <Config Name="NVIDIA Visible Devices" Target="NVIDIA_VISIBLE_DEVICES" Default="all" Mode="" Description="GPU selection (all, 0, 1, etc.)" Type="Variable" Display="advanced" Required="false" Mask="false">all</Config>
+
+  <Config Name="NVIDIA Driver Capabilities" Target="NVIDIA_DRIVER_CAPABILITIES" Default="compute,utility" Mode="" Description="NVIDIA driver capabilities" Type="Variable" Display="advanced" Required="false" Mask="false">compute,utility</Config>
+</Container>
