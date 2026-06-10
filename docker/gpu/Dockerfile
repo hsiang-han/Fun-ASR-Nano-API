@@ -18,9 +18,12 @@ COPY api/ ./api/
 COPY docker/scripts/entrypoint.sh .
 RUN chmod +x entrypoint.sh
 
-ENV MODEL_ID=FunAudioLLM/Fun-ASR-Nano-2512-hf \
+ENV MODEL_ID=FunAudioLLM/Fun-ASR-Nano-2512 \
     DEVICE=cuda:0 \
     LANGUAGE=auto \
+    ENABLE_VAD=true \
+    ENABLE_PUNC=true \
+    ENABLE_SPK=false \
     PORT=8080 \
     HF_HOME=/root/.cache/huggingface \
     HF_ENDPOINT=https://huggingface.co \

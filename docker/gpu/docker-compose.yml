@@ -11,9 +11,12 @@ services:
     volumes:
       - /mnt/user/appdata/fun-asr-nano-api/models:/root/.cache/huggingface
     environment:
-      - MODEL_ID=FunAudioLLM/Fun-ASR-Nano-2512-hf
+      - MODEL_ID=FunAudioLLM/Fun-ASR-Nano-2512
       - DEVICE=cuda:0
       - LANGUAGE=auto
+      - ENABLE_VAD=true
+      - ENABLE_PUNC=true
+      - ENABLE_SPK=false
       - HF_ENDPOINT=https://huggingface.co
       - PORT=8080
     shm_size: "4gb"

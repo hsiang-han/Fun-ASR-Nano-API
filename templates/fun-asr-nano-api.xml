@@ -20,9 +20,15 @@
 
   <Config Name="Model Cache" Target="/root/.cache/huggingface" Default="/mnt/user/appdata/fun-asr-nano-api/models" Mode="rw" Description="Model download cache. Persists across container recreates." Type="Path" Display="always" Required="true" Mask="false">/mnt/user/appdata/fun-asr-nano-api/models</Config>
 
-  <Config Name="Model ID" Target="MODEL_ID" Default="FunAudioLLM/Fun-ASR-Nano-2512-hf" Mode="" Description="Fun-ASR-Nano-2512-hf (full features, dialects, hotwords) or FunAudioLLM/Fun-ASR-MLT-Nano-2512 (31 languages including European)." Type="Variable" Display="always" Required="true" Mask="false">FunAudioLLM/Fun-ASR-Nano-2512-hf</Config>
+  <Config Name="Model ID" Target="MODEL_ID" Default="FunAudioLLM/Fun-ASR-Nano-2512" Mode="" Description="Fun-ASR-Nano-2512 (full features, dialects, hotwords) or FunAudioLLM/Fun-ASR-MLT-Nano-2512 (31 languages including European)." Type="Variable" Display="always" Required="true" Mask="false">FunAudioLLM/Fun-ASR-Nano-2512</Config>
 
   <Config Name="Language" Target="LANGUAGE" Default="auto" Mode="" Description="Default language: auto, 中文, English, 日文, etc. Per-request override via API parameter." Type="Variable" Display="always" Required="false" Mask="false">auto</Config>
+
+  <Config Name="Enable VAD" Target="ENABLE_VAD" Default="true" Mode="" Description="Voice Activity Detection. Segments long audio into utterances. Recommended for files longer than 30s." Type="Variable" Display="always" Required="false" Mask="false">true</Config>
+
+  <Config Name="Enable Punctuation" Target="ENABLE_PUNC" Default="true" Mode="" Description="Auto-add punctuation to transcription output." Type="Variable" Display="always" Required="false" Mask="false">true</Config>
+
+  <Config Name="Enable Speaker Diarization" Target="ENABLE_SPK" Default="false" Mode="" Description="Identify who is speaking. Adds ~7MB speaker model. Results in verbose_json format." Type="Variable" Display="always" Required="false" Mask="false">false</Config>
 
   <Config Name="HuggingFace Endpoint" Target="HF_ENDPOINT" Default="https://huggingface.co" Mode="" Description="HuggingFace download endpoint. China users: change to https://hf-mirror.com for faster downloads." Type="Variable" Display="always" Required="false" Mask="false">https://huggingface.co</Config>
 
