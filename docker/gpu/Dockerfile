@@ -8,7 +8,7 @@ RUN apt-get update && \
 WORKDIR /app
 
 RUN pip install --no-cache-dir \
-    funasr \
+    "funasr==1.3.9" \
     fastapi \
     uvicorn[standard] \
     python-multipart \
