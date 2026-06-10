@@ -19,15 +19,26 @@
 ## 快速开始
 
 ```bash
+# 默认：Fun-ASR-Nano（中文方言、热词、全功能）
 docker run -d --gpus all \
   -p 8080:8080 \
   -v /mnt/user/appdata/fun-asr-nano-api/models:/root/.cache/huggingface \
+  -e MODEL_ID=FunAudioLLM/Fun-ASR-Nano-2512-hf \
+  --shm-size=4g \
+  --name fun-asr-nano-api \
+  ghcr.io/hsiang-han/fun-asr-nano-api:latest
+
+# 备选：Fun-ASR-MLT（31 种语言含欧洲语言）
+docker run -d --gpus all \
+  -p 8080:8080 \
+  -v /mnt/user/appdata/fun-asr-nano-api/models:/root/.cache/huggingface \
+  -e MODEL_ID=FunAudioLLM/Fun-ASR-MLT-Nano-2512 \
   --shm-size=4g \
   --name fun-asr-nano-api \
   ghcr.io/hsiang-han/fun-asr-nano-api:latest
 ```
 
-国内用户设置 `HF_ENDPOINT=https://hf-mirror.com` 加速下载。
+国内用户加 `-e HF_ENDPOINT=https://hf-mirror.com` 加速下载。
 
 ## 使用示例
 

@@ -19,15 +19,26 @@ OpenAI-compatible Speech-to-Text API powered by [Fun-ASR-Nano](https://huggingfa
 ## Quick Start
 
 ```bash
+# Default: Fun-ASR-Nano (Chinese dialects, hotwords, full features)
 docker run -d --gpus all \
   -p 8080:8080 \
   -v /mnt/user/appdata/fun-asr-nano-api/models:/root/.cache/huggingface \
+  -e MODEL_ID=FunAudioLLM/Fun-ASR-Nano-2512-hf \
+  --shm-size=4g \
+  --name fun-asr-nano-api \
+  ghcr.io/hsiang-han/fun-asr-nano-api:latest
+
+# Alternative: Fun-ASR-MLT (31 languages including European)
+docker run -d --gpus all \
+  -p 8080:8080 \
+  -v /mnt/user/appdata/fun-asr-nano-api/models:/root/.cache/huggingface \
+  -e MODEL_ID=FunAudioLLM/Fun-ASR-MLT-Nano-2512 \
   --shm-size=4g \
   --name fun-asr-nano-api \
   ghcr.io/hsiang-han/fun-asr-nano-api:latest
 ```
 
-China users: set `HF_ENDPOINT=https://hf-mirror.com`.
+China users: set `-e HF_ENDPOINT=https://hf-mirror.com`.
 
 ## Usage Examples
 
