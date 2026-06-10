@@ -29,6 +29,7 @@ async def lifespan(app: FastAPI):
         "hub": "hf",
         "trust_remote_code": True,
         "device": DEVICE,
+        "disable_update": True,
     }
 
     if ENABLE_VAD:
